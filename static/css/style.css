@@ -1,0 +1,600 @@
+
+:root {
+    --amaranth: #933B5B;
+    --thulian-pink: #B5728A;
+    --brook-green: #AABAAE;
+    --chalk: #E3D6BF;
+    --pomelo-olive: #9F9679;
+    --soft-base: #FAF7F2;
+    --dark-text: #2D2427;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--soft-base);
+    color: var(--dark-text);
+    font-family: 'Poppins', sans-serif;
+}
+
+.font-serif-display {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.bg-amaranth {
+    background-color: var(--amaranth);
+}
+
+.text-amaranth {
+    color: var(--amaranth);
+}
+
+.bg-thulian {
+    background-color: var(--thulian-pink);
+}
+
+.bg-brook {
+    background-color: var(--brook-green);
+}
+
+.bg-chalk {
+    background-color: var(--chalk);
+}
+
+.bg-olive {
+    background-color: var(--pomelo-olive);
+}
+
+.border-brook {
+    border-color: var(--brook-green);
+}
+
+.border-olive {
+    border-color: var(--pomelo-olive);
+}
+
+/* Hero Bouquet Animation Container */
+
+.hero-bouquet-stage {
+    perspective: 1000px;
+}
+
+/* ALEEN Homepage Hero Background */
+
+.hero-home-section {
+    background-image: url('/static/images/website-bg.jpg') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+
+/* ==========================================
+   ALEEN MOBILE & TABLET RESPONSIVE DESIGN
+   Desktop design remains unchanged
+   ========================================== */
+
+@media screen and (max-width: 1023px) {
+
+    /* HEADER */
+
+    body > header > div {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        height: auto !important;
+        padding: 12px 16px !important;
+        gap: 12px;
+    }
+
+    body > header > div > a {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    body > header > div > a img {
+        width: 36px;
+        height: 36px;
+    }
+
+    body > header > div > div {
+        grid-column: 2;
+        grid-row: 1;
+        gap: 20px;
+    }
+
+    body > header nav {
+        display: flex !important;
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px 16px !important;
+        font-size: 10px !important;
+        letter-spacing: 0.06em !important;
+        padding-top: 10px;
+        padding-bottom: 3px;
+        border-top: 1px solid rgba(227, 214, 191, 0.65);
+    }
+
+    body > header nav a {
+        white-space: nowrap;
+    }
+
+    body > div:first-child {
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+
+    /* HERO SECTION */
+
+    .hero-home-section {
+        padding: 28px 14px 36px !important;
+        background-position: center center !important;
+    }
+
+    .hero-home-section h1 {
+        font-size: clamp(42px, 11vw, 86px) !important;
+        line-height: 1 !important;
+    }
+
+    .hero-home-section > .max-w-6xl >
+    .text-center > p {
+        font-size: clamp(19px, 5vw, 28px) !important;
+    }
+
+    .hero-home-section > .max-w-6xl > .grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 16px !important;
+        margin-top: 8px !important;
+        align-items: start;
+    }
+
+
+    /* ROTATING FLOWER */
+
+    .hero-home-section > .max-w-6xl >
+    .grid > div:nth-child(2) {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .hero-home-section > .max-w-6xl >
+    .grid > div:nth-child(2) > div:first-child {
+        width: min(100%, 450px) !important;
+        height: clamp(280px, 85vw, 470px) !important;
+    }
+
+    .hero-home-section #hero-img-a,
+    .hero-home-section #hero-img-b {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .hero-home-section #hero-prev,
+    .hero-home-section #hero-next {
+        top: clamp(190px, 53vw, 340px) !important;
+    }
+
+    .hero-home-section #hero-prev {
+        left: 4px !important;
+    }
+
+    .hero-home-section #hero-next {
+        right: 4px !important;
+    }
+
+
+    /* LEFT & RIGHT FLOWER DESCRIPTION */
+
+    .hero-home-section > .max-w-6xl >
+    .grid > div:first-child,
+    .hero-home-section > .max-w-6xl >
+    .grid > div:nth-child(3) {
+        display: contents !important;
+    }
+
+    #hero-left-box {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    #hero-right-box {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    #hero-left-box,
+    #hero-right-box {
+        width: 100%;
+        max-width: none !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        text-align: center !important;
+        padding: 8px 3px;
+    }
+
+    .hero-home-section #hero-left-desc,
+    .hero-home-section #hero-right-desc {
+        font-size: 12px !important;
+        line-height: 1.6 !important;
+    }
+
+
+    /* FOUR PINK INFORMATION BOXES */
+
+    .hero-home-section > .max-w-6xl >
+    .grid > div:first-child > div:last-child {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .hero-home-section > .max-w-6xl >
+    .grid > div:nth-child(3) > div:last-child {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    .hero-home-section > .max-w-6xl >
+    .grid > div:first-child > div:last-child,
+    .hero-home-section > .max-w-6xl >
+    .grid > div:nth-child(3) > div:last-child {
+        display: grid !important;
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        max-width: none !important;
+        width: 100%;
+        padding: 0 !important;
+        margin: 0 !important;
+        align-self: stretch;
+    }
+
+    .hero-home-section .hero-glass {
+        width: 100%;
+        height: 100%;
+        margin: 0 !important;
+        padding: 12px !important;
+        border-radius: 12px;
+    }
+
+    .hero-home-section .hero-glass h3 {
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+    }
+
+    .hero-home-section .hero-glass p {
+        font-size: 11px !important;
+        line-height: 1.6 !important;
+    }
+
+
+    /* ADVERTISING BANNER */
+
+    #floral-promotion {
+        padding: 22px 12px !important;
+    }
+
+    #floral-promotion > div,
+    #floral-promotion .banner-slide > div.relative {
+        min-height: clamp(200px, 55vw, 380px) !important;
+    }
+
+    #floral-promotion .banner-slide > div.relative {
+        padding: 24px 20px !important;
+    }
+
+    #floral-promotion .banner-slide h2 {
+        font-size: clamp(24px, 5vw, 42px) !important;
+    }
+
+    #floral-promotion .banner-slide p {
+        font-size: 12px !important;
+    }
+
+
+    /* COLLECTION CATEGORY CARDS */
+
+    #collection {
+        padding: 32px 14px !important;
+    }
+
+    #collection > div:first-child {
+        margin-bottom: 24px !important;
+    }
+
+    #collection h2 {
+        font-size: clamp(27px, 6vw, 42px) !important;
+        line-height: 1.2 !important;
+    }
+
+    #collection > .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+    }
+
+    #collection > .grid > a {
+        min-width: 0;
+    }
+
+    #collection > .grid > a > div:first-child {
+        height: auto !important;
+        aspect-ratio: 4 / 3;
+    }
+
+    #collection > .grid > a > div:last-child {
+        padding: 10px !important;
+        gap: 5px;
+    }
+
+    #collection > .grid > a > div:last-child > span:first-child {
+        font-size: clamp(15px, 4vw, 23px) !important;
+        line-height: 1.25;
+    }
+
+    #collection > .grid > a > div:last-child > span:last-child {
+        width: 23px;
+        height: 23px;
+        flex-shrink: 0;
+    }
+
+    #collection > .grid > p {
+        grid-column: 1 / -1;
+    }
+
+
+    /* MONTHLY BESTSELLERS */
+
+    #most-loved {
+        padding: 32px 14px !important;
+    }
+
+    #most-loved > div:first-child {
+        margin-bottom: 24px !important;
+    }
+
+    #most-loved h2 {
+        font-size: clamp(28px, 7vw, 42px) !important;
+    }
+
+    #most-loved > .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+    }
+
+    #most-loved article {
+        min-width: 0;
+    }
+
+    #most-loved article > div {
+        padding: 12px !important;
+    }
+
+    #most-loved article > div > a {
+        font-size: 18px !important;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+
+    #most-loved article > div > p {
+        overflow-wrap: anywhere;
+    }
+
+    #most-loved article > a > span {
+        font-size: 8px !important;
+        padding: 4px 7px !important;
+        letter-spacing: 0 !important;
+    }
+
+    #most-loved article > a > span:first-of-type {
+        left: 6px;
+    }
+
+    #most-loved article > a > span:last-of-type {
+        right: 6px;
+    }
+
+    #most-loved article button {
+        font-size: 10px !important;
+        letter-spacing: 0.05em !important;
+        padding: 10px 5px !important;
+        min-height: 40px;
+    }
+
+    #most-loved article > div > div:last-child > a {
+        font-size: 9px !important;
+        letter-spacing: 0.03em !important;
+    }
+
+
+    /* GIFT FINDER */
+
+    #gift-finder {
+        padding: 32px 14px !important;
+    }
+
+    #gift-finder > div {
+        padding: 24px 16px !important;
+    }
+
+    #gift-finder h2 {
+        font-size: clamp(28px, 7vw, 42px) !important;
+    }
+
+    #giftFinderForm > .grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 14px !important;
+    }
+
+    #gift-finder .gift-select {
+        width: 100%;
+        min-height: 44px;
+        font-size: 13px;
+    }
+
+
+    /* ROSE QUOTE */
+
+    #reviews {
+        margin-top: 28px !important;
+        margin-bottom: 28px !important;
+        padding: 48px 20px !important;
+    }
+
+    #reviews .font-serif-display {
+        font-size: clamp(23px, 5.5vw, 36px) !important;
+        line-height: 1.45 !important;
+    }
+
+
+    /* CONTACT INFORMATION */
+
+    #contact-information {
+        padding: 36px 18px !important;
+    }
+
+    #contact-information h2:first-child {
+        font-size: 28px !important;
+    }
+
+    #contact-information h2:nth-child(2) {
+        font-size: clamp(28px, 7vw, 42px) !important;
+        line-height: 1.2;
+    }
+
+
+    /* FOOTER */
+
+    footer#about > div:first-child {
+        grid-template-columns: minmax(0, 1fr) !important;
+        padding: 28px 18px !important;
+        gap: 24px !important;
+        text-align: center;
+    }
+
+    footer#about > div:first-child > div:first-child > a {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    footer#about > div:first-child > div:nth-child(2) {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 12px 16px !important;
+        white-space: normal !important;
+        line-height: 1.8;
+    }
+
+    footer#about > div:first-child > div:nth-child(2) > a {
+        white-space: nowrap;
+    }
+
+    footer#about > div:first-child > div:last-child {
+        align-items: center !important;
+        overflow-wrap: anywhere;
+    }
+
+
+    /* SHOPPING BAG */
+
+    #cart-drawer {
+        max-width: min(100%, 448px);
+        height: 100dvh;
+    }
+
+    #cart-items-container {
+        min-height: 0;
+    }
+
+    #cart-footer {
+        flex-shrink: 0;
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+
+}
+
+
+/* ==========================================
+   SMALL MOBILE SCREEN
+   ========================================== */
+
+@media screen and (max-width: 375px) {
+
+    body > header nav {
+        font-size: 9px !important;
+        gap: 9px 11px !important;
+    }
+
+    .hero-home-section {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .hero-home-section > .max-w-6xl > .grid {
+        gap: 10px !important;
+    }
+
+    .hero-home-section .hero-glass {
+        padding: 10px !important;
+    }
+
+    .hero-home-section .hero-glass h3 {
+        font-size: 12px !important;
+    }
+
+    .hero-home-section .hero-glass p {
+        font-size: 11px !important;
+    }
+
+    #collection,
+    #most-loved {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    #most-loved article > div {
+        padding: 9px !important;
+    }
+
+}
+
+
+/* ==========================================
+   TABLET SCREEN
+   ========================================== */
+
+@media screen and (min-width: 768px)
+and (max-width: 1023px) {
+
+    #giftFinderForm > .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+
+    #most-loved > .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+
+    .hero-home-section .hero-glass h3 {
+        font-size: 15px !important;
+    }
+
+    .hero-home-section .hero-glass p {
+        font-size: 13px !important;
+    }
+
+    .hero-home-section #hero-left-desc,
+    .hero-home-section #hero-right-desc {
+        font-size: 14px !important;
+    }
+
+}

@@ -1,0 +1,294 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if order.delivery_type == 'EMERGENCY' %}
+        Emergency Request Received — Aleen Floral Atelier
+    {% elif order.status == 'CANCELLED' %}
+        Order Cancelled — Aleen Floral Atelier
+    {% elif order.status == 'CONFIRMED' or order.status == 'PROCESSING' or order.status == 'OUT_FOR_DELIVERY' or order.status == 'DELIVERED' %}
+        Order Confirmed — Aleen Floral Atelier
+    {% else %}
+        Order Pending — Aleen Floral Atelier
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<section class="max-w-2xl mx-auto px-6 py-20 text-center">
+
+    <div class="bg-white/85 backdrop-blur p-10 sm:p-12 rounded-3xl border border-[#E3D6BF] shadow-sm">
+
+        <div class="w-14 h-14 mx-auto rounded-full bg-[#933B5B]/10 flex items-center justify-center text-[#933B5B] text-2xl mb-6">
+            ✦
+        </div>
+
+        {% if order.delivery_type == 'EMERGENCY' %}
+
+            <p class="text-[11px] uppercase tracking-[0.24em] text-[#9F9679] font-semibold">
+                Emergency Delivery
+            </p>
+
+            <h1 class="font-serif-display text-3xl sm:text-4xl text-[#933B5B] mt-3">
+                Request Received
+            </h1>
+
+            <p class="text-sm text-[#2D2427]/75 leading-relaxed mt-5">
+                Thank you, {{ order.customer_name }}. Your emergency delivery request has been received.
+                Our team will contact you at
+                <strong>{{ order.phone }}</strong>
+                to confirm availability and discuss the emergency delivery charge.
+            </p>
+
+            <div class="mt-8 p-6 rounded-2xl bg-[#FAF7F2] border border-[#E3D6BF] text-left space-y-4">
+
+                <div class="flex justify-between gap-4 text-sm">
+                    <span class="text-[#2D2427]/65">Request Number</span>
+                    <strong class="text-[#933B5B]">#{{ order.id }}</strong>
+                </div>
+
+                <div class="flex justify-between gap-4 text-sm">
+                    <span class="text-[#2D2427]/65">Requested Delivery</span>
+                    <strong class="text-right">{{ order.emergency_requested_time }}</strong>
+                </div>
+
+                <div class="flex justify-between gap-4 text-sm">
+                    <span class="text-[#2D2427]/65">Delivery Area</span>
+                    <strong class="text-right">{{ order.area }}</strong>
+                </div>
+
+                <div class="flex justify-between gap-4 text-sm">
+                    <span class="text-[#2D2427]/65">Emergency Charge</span>
+                    <strong class="text-[#933B5B]">To Be Confirmed</strong>
+                </div>
+
+                {% if order.emergency_notes %}
+                <div class="pt-3 border-t border-[#E3D6BF]">
+                    <p class="text-xs text-[#2D2427]/65 mb-2">Emergency Instructions</p>
+                    <p class="text-sm text-[#2D2427]">{{ order.emergency_notes }}</p>
+                </div>
+                {% endif %}
+
+            </div>
+
+            <p class="text-xs text-[#9F9679] leading-relaxed mt-6">
+                Your order is not confirmed yet. We will confirm it after discussing the delivery charge and receiving your approval.
+            </p>
+
+
+        {% elif order.status == 'CANCELLED' %}
+
+            <!-- NORMAL ORDER: CANCELLED -->
+
+            <p class="text-[11px] uppercase tracking-[0.24em] text-[#9F9679] font-semibold">
+                Order #{{ order.id }} Cancelled
+            </p>
+
+            <h1 class="font-serif-display text-3xl sm:text-4xl text-[#933B5B] mt-3">
+                Order Cancelled
+            </h1>
+
+            <p class="text-sm text-[#2D2427]/75 leading-relaxed mt-5">
+                Your floral arrangement order has been cancelled.
+                Please contact our atelier for further assistance.
+            </p>
+
+            <div class="mt-8 p-6 rounded-2xl bg-[#FAF7F2] border border-[#E3D6BF] text-left space-y-4">
+
+                <div class="flex justify-between gap-4 text-sm">
+                    <span class="text-[#2D2427]/65">Delivery Area</span>
+                    <strong class="text-right">{{ order.area }}</strong>
+                </div>
+
+                <div class="pt-4 border-t border-[#E3D6BF] flex justify-between gap-4">
+
+                    <span class="font-semibold text-[#2D2427]">
+                        Order Status
+                    </span>
+
+                    <strong class="text-[#933B5B]">
+                        Cancelled
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        {% elif order.status == 'CONFIRMED' or order.status == 'PROCESSING' or order.status == 'OUT_FOR_DELIVERY' or order.status == 'DELIVERED' %}
+
+            <!-- NORMAL ORDER: ADMIN CONFIRMED -->
+
+            <p class="text-[11px] uppercase tracking-[0.24em] text-[#9F9679] font-semibold">
+                Order #{{ order.id }} Confirmed
+            </p>
+
+            <h1 class="font-serif-display text-3xl sm:text-4xl text-[#933B5B] mt-3">
+                Your Order Is Confirmed!
+            </h1>
+
+            <p class="text-sm text-[#2D2427]/75 leading-relaxed mt-5">
+                Thank you, {{ order.customer_name }}.
+                Your floral arrangement order has been confirmed by our atelier.
+                Your delivery fee and final payable amount are shown below.
+            </p>
+
+            <div class="mt-8 p-6 rounded-2xl bg-[#FAF7F2] border border-[#E3D6BF] text-left space-y-4">
+
+                <div class="flex justify-between gap-4 text-sm">
+                    <span class="text-[#2D2427]/65">Delivery Area</span>
+                    <strong class="text-right">{{ order.area }}</strong>
+                </div>
+
+                <div class="flex justify-between gap-4 text-sm">
+                    <span class="text-[#2D2427]/65">Product Subtotal</span>
+                    <strong>৳{{ order_subtotal }}</strong>
+                </div>
+
+                <div class="flex justify-between gap-4 text-sm">
+
+                    <span class="text-[#2D2427]/65">
+                        Shipping Fee
+                    </span>
+
+                    <strong>
+                        {% if order.shipping_fee == 0 %}
+                            {% if 'uttara' in order.area|lower or 'উত্তরা' in order.area or 'uttara' in order.address|lower or 'উত্তরা' in order.address %}
+                                FREE
+                            {% else %}
+                                ৳{{ order.shipping_fee }}
+                            {% endif %}
+                        {% else %}
+                            ৳{{ order.shipping_fee }}
+                        {% endif %}
+                    </strong>
+
+                </div>
+
+                {% if order.discount_amount %}
+                <div class="flex justify-between gap-4 text-sm">
+                    <span class="text-[#2D2427]/65">Promo Discount</span>
+                    <strong class="text-[#718C78]">
+                        - ৳{{ order.discount_amount }}
+                    </strong>
+                </div>
+                {% endif %}
+
+                <div class="pt-4 border-t border-[#E3D6BF] flex justify-between gap-4">
+
+                    <span class="font-semibold text-[#2D2427]">
+                        Total Payable
+                    </span>
+
+                    <strong class="text-xl text-[#933B5B]">
+                        ৳{{ order.total_amount }}
+                    </strong>
+
+                </div>
+
+                <div class="pt-4 border-t border-[#E3D6BF] flex justify-between gap-4 text-sm">
+
+                    <span class="text-[#2D2427]/65">
+                        Order Status
+                    </span>
+
+                    <strong class="text-[#933B5B]">
+                        {{ order.get_status_display }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <p class="text-xs text-[#9F9679] leading-relaxed mt-6">
+                Payment Method: Cash on Delivery
+            </p>
+
+
+        {% else %}
+
+            <!-- NORMAL ORDER: PENDING CONFIRMATION -->
+
+            <p class="text-[11px] uppercase tracking-[0.24em] text-[#9F9679] font-semibold">
+                Order #{{ order.id }} Received
+            </p>
+
+            <h1 class="font-serif-display text-3xl sm:text-4xl text-[#933B5B] mt-3">
+                Thank You, {{ order.customer_name }}
+            </h1>
+
+            <p class="text-sm text-[#2D2427]/75 leading-relaxed mt-5">
+                Your floral arrangement order has been received
+                and is currently awaiting confirmation from our atelier.
+                Our team will contact you shortly on
+                <strong>{{ order.phone }}</strong>.
+            </p>
+
+            <div class="mt-8 p-6 rounded-2xl bg-[#FAF7F2] border border-[#E3D6BF] text-left space-y-4">
+
+                <div class="flex justify-between gap-4 text-sm">
+                    <span class="text-[#2D2427]/65">Delivery Area</span>
+                    <strong class="text-right">{{ order.area }}</strong>
+                </div>
+
+                <div class="flex justify-between gap-4 text-sm">
+                    <span class="text-[#2D2427]/65">Product Subtotal</span>
+                    <strong>৳{{ order_subtotal }}</strong>
+                </div>
+
+                {% if order.discount_amount %}
+                <div class="flex justify-between gap-4 text-sm">
+                    <span class="text-[#2D2427]/65">Promo Discount</span>
+                    <strong class="text-[#718C78]">
+                        - ৳{{ order.discount_amount }}
+                    </strong>
+                </div>
+                {% endif %}
+
+                <div class="pt-4 border-t border-[#E3D6BF] flex justify-between gap-4">
+
+                    <span class="font-semibold text-[#2D2427]">
+                        Order Status
+                    </span>
+
+                    <strong class="text-[#933B5B] text-right">
+                        Pending Confirmation
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <p class="text-xs text-[#9F9679] leading-relaxed mt-6">
+                Your delivery fee and final payable amount will be
+                displayed once our team confirms your order.
+            </p>
+
+            <p class="text-xs text-[#9F9679] leading-relaxed mt-2">
+                Please keep this page open or save its private link
+                to check your order status.
+            </p>
+
+        {% endif %}
+
+        <a href="{% url 'shop' %}"
+           class="inline-block mt-8 px-9 py-3.5 rounded-full bg-[#933B5B] text-white text-xs uppercase tracking-[0.18em] font-medium hover:bg-[#B5728A] transition">
+            Continue Exploring
+        </a>
+
+    </div>
+
+</section>
+
+
+{% if order.delivery_type == 'NORMAL' and order.status == 'PENDING' %}
+
+<script>
+    setTimeout(function () {
+        window.location.reload();
+    }, 5000);
+</script>
+
+{% endif %}
+
+{% endblock %}

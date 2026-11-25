@@ -1,0 +1,348 @@
+
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} — Aleen Floral Atelier{% endblock %}
+
+{% block content %}
+<section class="max-w-6xl mx-auto px-6 py-12">
+
+    <a href="{% url 'shop' %}?category={{ product.category.slug }}"
+       class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#9F9679] hover:text-[#933B5B] mb-8 transition">
+        ← Back to {{ product.category.name }}
+    </a>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+        <!-- Product Image & Flower Care -->
+        <div class="lg:col-span-6">
+
+            <!-- Product Image -->
+            <div class="aspect-[5/4] rounded-3xl overflow-hidden bg-[#E3D6BF]/40 border border-[#E3D6BF] shadow-sm">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}"
+                         alt="{{ product.name }}"
+                         class="w-full h-full object-contain">
+                {% else %}
+                    <div class="w-full h-full flex items-center justify-center text-sm text-[#9F9679]">
+                        Image coming soon
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <!-- Flower Care Information -->
+            {% if product.flower_care %}
+                <div class="mt-6 bg-[#FBE8E8] border border-[#F2C9CE] rounded-2xl p-5">
+
+                    <p class="text-[11px] uppercase tracking-[0.18em] text-[#933B5B] font-semibold mb-3">
+                        Flower Care Guide
+                    </p>
+
+                    <div class="text-sm text-[#2D2427]/80 leading-relaxed whitespace-pre-line">
+                        {{ product.flower_care }}
+                    </div>
+
+                </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Product Details -->
+        <div class="lg:col-span-6 space-y-6 lg:pt-4">
+
+            <div>
+                <span class="text-[11px] uppercase tracking-[0.22em] text-[#B5728A] font-semibold">
+                    {{ product.category.name }}
+                </span>
+
+                <h1 class="font-serif-display text-4xl sm:text-5xl font-semibold text-[#2D2427] mt-1">
+                    {{ product.name }}
+                </h1>
+
+                <p class="text-xs text-[#9F9679] mt-2">
+                    Price {{ product.pricing_unit_label }}
+                </p>
+
+                <!-- Product Price -->
+                <div class="mt-3">
+
+                    {% if product.has_discount %}
+
+                        <p class="text-base text-[#2D2427]/45 line-through">
+                            ৳{{ product.selling_price }}
+                        </p>
+
+                        <div class="flex items-center gap-3 flex-wrap">
+
+                            <p class="text-2xl font-semibold text-[#933B5B]">
+                                ৳{{ product.current_price }}
+                            </p>
+
+                            {% if product.discount_percentage %}
+                                <span class="bg-[#933B5B]/10 text-[#933B5B] text-xs font-semibold px-3 py-1 rounded-full">
+                                    {{ product.discount_percentage }}% OFF
+                                </span>
+                            {% endif %}
+
+                        </div>
+
+                    {% else %}
+
+                        <p class="text-2xl font-semibold text-[#933B5B]">
+                            ৳{{ product.current_price }}
+                        </p>
+
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <!-- Product Story -->
+            {% if product.story_description %}
+                <div class="bg-[#E3D6BF]/35 border border-[#E3D6BF] rounded-2xl p-5">
+
+                    <p class="text-[11px] uppercase tracking-[0.18em] text-[#933B5B] font-semibold mb-1.5">
+                        The Story
+                    </p>
+
+                    <p class="text-sm text-[#2D2427]/80 leading-relaxed">
+                        {{ product.story_description }}
+                    </p>
+
+                </div>
+            {% endif %}
+
+            <!-- Short Description -->
+            {% if product.short_description %}
+                <p class="text-sm text-[#2D2427]/75 leading-relaxed">
+                    {{ product.short_description }}
+                </p>
+            {% endif %}
+
+            <!-- Sentimental Description -->
+            {% if product.sentimental_description %}
+                <div class="bg-[#E3D6BF]/35 border border-[#E3D6BF] rounded-2xl p-5">
+
+                    <p class="text-[11px] uppercase tracking-[0.18em] text-[#933B5B] font-semibold mb-2">
+                        The Sentiment
+                    </p>
+
+                    <p class="text-sm text-[#2D2427]/80 leading-relaxed whitespace-pre-line">
+                        {{ product.sentimental_description }}
+                    </p>
+
+                </div>
+            {% endif %}
+
+            <!-- Quantity & Add to Cart -->
+            {% if product.is_in_stock %}
+
+                <div class="pt-2 space-y-4">
+
+                    <div class="flex items-center gap-4 flex-wrap">
+
+                        <span class="text-xs uppercase tracking-widest text-[#2D2427]/70">
+                            Quantity
+                        </span>
+
+                        <div class="inline-flex items-center border border-[#9F9679]/50 rounded-full bg-white">
+
+                            <button type="button"
+                                    onclick="changeDetailQty(-1)"
+                                    class="px-4 py-2 text-sm hover:text-[#933B5B]">
+                                −
+                            </button>
+
+                            <input
+                                id="detail-qty"
+                                type="number"
+                                value="1"
+                                min="1"
+                                max="{{ product.stock_qty }}"
+                                readonly
+                                class="w-10 text-center text-sm font-medium bg-transparent focus:outline-none">
+
+                            <button type="button"
+                                    onclick="changeDetailQty(1)"
+                                    class="px-4 py-2 text-sm hover:text-[#933B5B]">
+                                +
+                            </button>
+
+                        </div>
+
+                        <span class="text-xs text-[#9F9679]">
+                            {{ product.stock_qty }} available
+                        </span>
+
+                    </div>
+
+                    <!-- Dynamic Total Price -->
+                    <div class="bg-[#FAF7F2] rounded-xl p-4 flex justify-between items-center">
+
+                        <span class="text-xs uppercase tracking-widest text-[#2D2427]/65">
+                            Total Price
+                        </span>
+
+                        <span id="detail-total"
+                              class="text-lg font-semibold text-[#933B5B]">
+                            ৳{{ product.current_price }}
+                        </span>
+
+                    </div>
+
+                    <!-- Add to Cart Button -->
+                    <button
+                        type="button"
+                        data-product-id="{{ product.id }}"
+                        onclick="addToCart(Number(this.dataset.productId), Number(document.getElementById('detail-qty').value))"
+                        class="w-full py-4 rounded-full bg-[#933B5B] text-white text-xs uppercase tracking-[0.2em] font-medium shadow-md hover:bg-[#B5728A] transition">
+
+                        Add to Bag
+
+                    </button>
+
+                </div>
+
+            {% else %}
+
+                <div class="p-4 rounded-2xl bg-[#E3D6BF]/50 text-center text-xs uppercase tracking-widest text-[#2D2427]/70">
+                    Currently Out of Stock
+                </div>
+
+            {% endif %}
+
+            <!-- Delivery Notes -->
+            <div class="pt-4 border-t border-[#E3D6BF] space-y-2 text-xs text-[#2D2427]/75">
+
+                <p>✦ Complimentary delivery across all sectors of Uttara.</p>
+                <p>✦ No account required — quick guest checkout.</p>
+                <p>✦ Handcrafted fresh before dispatch.</p>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    {% if related_products %}
+
+        <div class="mt-20 pt-12 border-t border-[#E3D6BF]">
+
+            <h2 class="font-serif-display text-3xl font-semibold text-[#2D2427] mb-8 text-center">
+                You May Also Love
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+                {% for item in related_products %}
+
+                    <a href="{% url 'product_detail' item.slug %}"
+                       class="group block text-center">
+
+                        <div class="aspect-square rounded-2xl overflow-hidden border border-[#E3D6BF] bg-[#E3D6BF]/30">
+
+                            {% if item.image %}
+                                <img src="{{ item.image.url }}"
+                                     alt="{{ item.name }}"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            {% else %}
+                                <div class="w-full h-full flex items-center justify-center text-xs text-[#9F9679]">
+                                    Image coming soon
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+                        <h3 class="font-serif-display text-xl font-semibold text-[#2D2427] mt-3">
+                            {{ item.name }}
+                        </h3>
+
+                        <div class="mt-0.5">
+
+                            {% if item.has_discount %}
+
+                                <p class="text-[11px] text-[#2D2427]/45 line-through">
+                                    ৳{{ item.selling_price }}
+                                </p>
+
+                                <p class="text-xs text-[#933B5B] font-semibold">
+                                    ৳{{ item.current_price }}
+                                </p>
+
+                                {% if item.discount_percentage %}
+                                    <p class="text-[10px] text-[#933B5B]">
+                                        {{ item.discount_percentage }}% OFF
+                                    </p>
+                                {% endif %}
+
+                            {% else %}
+
+                                <p class="text-xs text-[#933B5B] font-semibold">
+                                    ৳{{ item.current_price }}
+                                </p>
+
+                            {% endif %}
+
+                            <p class="text-[10px] text-[#9F9679]">
+                                {{ item.pricing_unit_label }}
+                            </p>
+
+                        </div>
+
+                    </a>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+    {% endif %}
+
+</section>
+
+<!-- Quantity and Price Calculation -->
+{% if product.is_in_stock %}
+
+<script>
+    const detailUnitPrice = Number("{{ product.current_price }}");
+
+    function changeDetailQty(delta) {
+
+        const input = document.getElementById('detail-qty');
+        const max = parseInt(input.max) || 1;
+
+        let val = parseInt(input.value) + delta;
+
+        if (val < 1) {
+            val = 1;
+        }
+
+        if (val > max) {
+            val = max;
+        }
+
+        input.value = val;
+
+        updateDetailTotal();
+    }
+
+    function updateDetailTotal() {
+
+        const input = document.getElementById('detail-qty');
+
+        const quantity = parseInt(input.value) || 1;
+
+        const total = detailUnitPrice * quantity;
+
+        document.getElementById('detail-total').textContent =
+            '৳' + total.toLocaleString('en-BD', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+    }
+</script>
+
+{% endif %}
+
+{% endblock %}

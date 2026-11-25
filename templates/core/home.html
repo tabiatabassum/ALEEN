@@ -1,0 +1,1017 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- 1. HERO SECTION -->
+<section class="hero-home-section relative overflow-hidden pt-8 pb-20 px-4 sm:px-8"
+         style="background-image: url('/static/images/website-bg.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+
+    <button id="hero-prev" aria-label="Previous Bouquet"
+            class="absolute left-3 sm:left-8 top-[46%] -translate-y-1/2 z-30 p-2 text-[#2D2427]/60 hover:text-[#933B5B] hover:scale-110 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+    </button>
+
+    <button id="hero-next" aria-label="Next Bouquet"
+            class="absolute right-3 sm:right-8 top-[46%] -translate-y-1/2 z-30 p-2 text-[#2D2427]/60 hover:text-[#933B5B] hover:scale-110 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+    </button>
+
+    <div class="max-w-6xl mx-auto relative">
+
+        <div class="text-center relative z-10 pointer-events-none select-none">
+            <p class="font-serif-display text-2xl sm:text-3xl text-[#2D2427]/85 tracking-wide">
+                Where Beauty Blooms
+            </p>
+
+            <h1 class="font-serif-display text-6xl sm:text-8xl lg:text-[7.8rem] leading-[0.86] font-normal text-[#933B5B] tracking-tight">
+                Effortlessly
+            </h1>
+        </div>
+
+        <div class="relative mt-4 lg:-mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <!-- Left Column -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-10 lg:pt-16 order-2 lg:order-1 z-20">
+
+                <div id="hero-left-box" class="max-w-[260px] mx-auto lg:mx-0 text-center lg:text-left min-h-[100px]">
+                    <p id="hero-left-desc" class="text-xs sm:text-[13px] text-[#2D2427]/80 leading-relaxed">
+                        Discover Aleen where handcrafted floral art meets heartfelt moments. Every bouquet is designed to bring elegance, warmth, and joy into your life.
+                    </p>
+                </div>
+
+                <div class="space-y-4 max-w-[260px] mx-auto lg:mx-0 w-full lg:pt-8">
+
+                    <!-- Feature 1 -->
+                    <div class="hero-glass">
+                        <div class="w-7 h-7 rounded-full bg-[#933B5B]/12 text-[#933B5B] flex items-center justify-center text-xs mb-2 ico">✦</div>
+                        <h3>Handpicked With Care</h3>
+                        <p>
+                            Our flowers are selected daily from trusted growers, ensuring freshness and long lasting beauty.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="hero-glass">
+                        <div class="w-7 h-7 rounded-full bg-[#B5728A]/18 text-[#933B5B] flex items-center justify-center text-xs mb-2 ico">✿</div>
+                        <h3>Signature Designs</h3>
+                        <p>
+                            Each bouquet is crafted with artistic detail, giving you arrangements that feel meaningful and unforgettable.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Center Column -->
+            <div class="lg:col-span-6 flex flex-col items-center justify-center order-1 lg:order-2 relative z-10">
+
+                <div class="relative w-[330px] h-[420px] sm:w-[450px] sm:h-[520px] lg:w-[490px] lg:h-[540px] flex items-center justify-center">
+
+                    <div class="absolute w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-[#B5728A]/15 blur-3xl pointer-events-none"></div>
+
+                    <img id="hero-img-a" src="" alt="Aleen Signature Bouquet"
+                         class="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
+                         style="filter: drop-shadow(0 24px 28px rgba(45, 36, 39, 0.18));">
+
+                    <img id="hero-img-b" src="" alt="Aleen Signature Bouquet"
+                         class="absolute inset-0 w-full h-full object-contain select-none pointer-events-none opacity-0"
+                         style="filter: drop-shadow(0 24px 28px rgba(45, 36, 39, 0.18));">
+
+                </div>
+
+                <a href="#collection"
+                   class="inline-flex mt-3 bg-[#FAF7F2]/95 text-[#2D2427] text-xs font-medium tracking-wide px-7 py-2.5 rounded-full shadow-lg border border-[#E3D6BF] hover:bg-[#933B5B] hover:text-white hover:border-[#933B5B] transition">
+                    Explore Collection
+                </a>
+
+                {% if site_settings.show_visitor_count|default:True %}
+                <div class="mt-2 inline-flex items-center gap-2 bg-[#AABAAE]/35 text-[#2D2427] text-[11px] font-medium px-4 py-1.5 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-[#933B5B] animate-pulse"></span>
+                    <span>15 people are exploring our collection right now</span>
+                </div>
+                {% endif %}
+
+            </div>
+
+            <!-- Right Column -->
+            <div class="lg:col-span-3 flex flex-col justify-between lg:items-end space-y-10 lg:pt-20 order-3 z-20">
+
+                <div id="hero-right-box" class="max-w-[260px] mx-auto lg:mx-0 text-center lg:text-left min-h-[100px]">
+                    <p id="hero-right-desc" class="text-xs sm:text-[13px] text-[#2D2427]/80 leading-relaxed">
+                        Our exquisite bouquets transform ordinary days into moments filled with beauty, joy, and heartfelt emotion.
+                    </p>
+                </div>
+
+                <div class="space-y-4 max-w-[260px] mx-auto lg:mx-0 w-full lg:pt-12">
+
+                    <!-- Feature 3 -->
+                    <div class="hero-glass">
+                        <div class="w-7 h-7 rounded-full bg-[#AABAAE]/35 text-[#2D2427] flex items-center justify-center text-xs mb-2 ico">❀</div>
+                        <h3>Eco-Friendly Approach</h3>
+                        <p>
+                            We prioritize sustainable packaging and responsible sourcing to protect nature and the future.
+                        </p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="hero-glass">
+                        <div class="w-7 h-7 rounded-full bg-[#9F9679]/25 text-[#2D2427] flex items-center justify-center text-xs mb-2 ico">♡</div>
+                        <h3>Made for Your Moments</h3>
+                        <p>
+                            From celebrations to soft gestures of love, our creations help you express the emotions that matter most.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 2. ANY KIND OF FLOURISH BANNER SLIDESHOW -->
+
+{% if active_banners %}
+<section id="floral-promotion" class="w-full px-4 md:px-10 py-12 md:py-16">
+
+    <div class="relative w-full max-w-7xl mx-auto min-h-[320px] md:min-h-[430px] overflow-hidden rounded-2xl bg-[#E3D6BF]">
+
+        {% for banner in active_banners %}
+        <div class="banner-slide absolute inset-0 transition-opacity duration-1000 ease-in-out {% if forloop.first %}opacity-100 z-10{% else %}opacity-0 z-0 pointer-events-none{% endif %}"
+             aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}">
+
+            {% if banner.image %}
+            <img src="{{ banner.image.url }}"
+                 alt="{{ banner.title }}"
+                 class="absolute inset-0 w-full h-full object-cover"
+                 {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}>
+            {% endif %}
+
+            <div class="absolute inset-0 bg-gradient-to-r from-[#2D2427]/75 via-[#2D2427]/35 to-transparent"></div>
+<img src="{% static 'images/aleen-bg.png' %}"
+     alt="Aleen Logo"
+     class="absolute bottom-5 left-5 z-20 w-14 h-auto object-contain opacity-80 pointer-events-none">
+            <div class="relative z-10 flex items-center min-h-[320px] md:min-h-[430px] px-7 md:px-16 py-12">
+                <div class="max-w-xl text-white">
+
+                    
+
+                    {% if banner.heading %}
+                    <h2 class="font-serif-display text-4xl md:text-6xl leading-tight mb-5">
+                        {{ banner.heading }}
+                    </h2>
+                    {% endif %}
+
+                    {% if banner.description %}
+                    <p class="text-base md:text-lg leading-relaxed text-white/90 max-w-lg">
+                        {{ banner.description }}
+                    </p>
+                    {% else %}
+                    
+                    {% endif %}
+
+                    {% if banner.button_text and banner.link %}
+                    <a href="{{ banner.link }}"
+                       class="inline-block mt-7 bg-[#FAF7F2] text-[#933B5B] text-xs uppercase tracking-[0.18em] px-7 py-3 rounded-full hover:bg-[#933B5B] hover:text-white transition">
+                        {{ banner.button_text }}
+                    </a>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% if active_banners|length > 1 %}
+        <div class="absolute bottom-5 left-0 right-0 z-20 flex justify-center gap-2">
+            {% for banner in active_banners %}
+            <button type="button"
+                    class="banner-indicator w-2.5 h-2.5 rounded-full transition-all duration-300 {% if forloop.first %}bg-white scale-125{% else %}bg-white/50{% endif %}"
+                    data-banner-index="{{ forloop.counter0 }}"
+                    aria-label="Show banner {{ forloop.counter }}">
+            </button>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endif %}
+
+
+<!-- 3. COLLECTION SECTION -->
+<section id="collection" class="max-w-7xl mx-auto px-6 py-14">
+
+    <div class="text-center mb-12">
+        <h2 class="font-serif-display text-4xl sm:text-5xl font-semibold text-[#2D2427]">
+            Find Something Beautiful for Every Occasion
+        </h2>
+
+        <p class="text-xs sm:text-sm text-[#2D2427]/65 mt-2">
+            Whether you're shopping for someone special or treating yourself, our curated categories help you discover the perfect bloom.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        {% for cat in categories %}
+        <a href="{% url 'shop' %}?category={{ cat.slug }}"
+           class="group block rounded-t-3xl rounded-b-xl overflow-hidden bg-[#E3D6BF]/40 border border-[#AABAAE]/60 shadow-sm hover:shadow-md transition">
+
+            <div class="h-80 overflow-hidden">
+                {% if cat.image %}
+                <img src="{{ cat.image.url }}"
+                     alt="{{ cat.name }}"
+                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                     loading="lazy">
+                {% else %}
+                <div class="w-full h-full bg-[#AABAAE]/30 flex items-center justify-center text-xs text-[#2D2427]/60">
+                    Upload Image in Admin
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="px-5 py-4 bg-[#E3D6BF]/60 flex items-center justify-between">
+                <span class="font-serif-display text-2xl font-medium text-[#2D2427]">
+                    {{ cat.name }}
+                </span>
+
+                <span class="w-7 h-7 rounded-full border border-[#933B5B]/40 text-[#933B5B] flex items-center justify-center text-xs group-hover:bg-[#933B5B] group-hover:text-white transition">
+                    →
+                </span>
+            </div>
+
+        </a>
+
+        {% empty %}
+        <p class="col-span-3 text-center text-xs text-[#2D2427]/60">
+            Add Categories (Bouquets, Floral Bags, Loose Flowers) from Admin Panel to display here.
+        </p>
+        {% endfor %}
+
+    </div>
+</section>
+
+
+<!-- 4. MOST LOVED IN [CURRENT MONTH] -->
+<section id="most-loved" class="max-w-7xl mx-auto px-6 py-14">
+
+    <div class="text-center mb-12">
+        <p class="text-xs uppercase tracking-[0.25em] text-[#9F9679] mb-3">
+            MONTHLY BESTSELLERS
+        </p>
+
+        <h2 class="font-serif-display text-4xl sm:text-5xl font-semibold text-center text-[#2D2427]">
+            Most Loved in {{ current_month }}
+        </h2>
+
+        <p class="text-xs sm:text-sm text-[#2D2427]/65 mt-3">
+            Discover the flowers and arrangements our customers love most this month.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+
+        {% for product in most_loved %}
+        <article class="group flex flex-col bg-white/60 rounded-2xl overflow-hidden border border-[#E3D6BF]/80 hover:shadow-lg transition duration-300">
+
+            <a href="{% url 'product_detail' product.slug %}"
+               class="relative aspect-square overflow-hidden bg-[#E3D6BF]/20 block">
+
+                {% if product.image %}
+                <img src="{{ product.image.url }}"
+                     alt="{{ product.name }}"
+                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                     loading="lazy">
+                {% else %}
+                <div class="w-full h-full flex items-center justify-center text-xs text-[#2D2427]/50">
+                    Product Image Coming Soon
+                </div>
+                {% endif %}
+
+                {% if product.has_discount %}
+                <span class="absolute top-3 left-3 bg-[#933B5B] text-white text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-full">
+                    {{ product.discount_percentage }}% Off
+                </span>
+                {% endif %}
+
+                {% if not product.is_in_stock %}
+                <span class="absolute top-3 right-3 bg-[#2D2427]/85 text-white text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-full">
+                    Sold Out
+                </span>
+                {% else %}
+                <span class="absolute top-3 right-3 bg-[#AABAAE] text-[#2D2427] text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-full">
+                    In Stock
+                </span>
+                {% endif %}
+
+            </a>
+
+            <div class="p-4 flex flex-col flex-grow">
+
+                <p class="text-[10px] uppercase tracking-[0.16em] text-[#9F9679] mb-1">
+                    {{ product.category.name }} · {{ product.pricing_unit_label }}
+                </p>
+
+                <a href="{% url 'product_detail' product.slug %}"
+                   class="font-serif-display text-xl font-semibold text-[#2D2427] hover:text-[#933B5B] transition">
+                    {{ product.name }}
+                </a>
+
+                {% if product.short_description %}
+                <p class="text-xs text-[#2D2427]/65 leading-relaxed mt-2">
+                    {{ product.short_description|truncatewords:20 }}
+                </p>
+                {% endif %}
+
+                <div class="mt-3 flex flex-wrap items-center gap-2">
+                    {% if product.has_discount %}
+                    <span class="text-xs text-[#2D2427]/45 line-through">
+                        ৳{{ product.selling_price }}
+                    </span>
+                    <span class="text-base font-semibold text-[#933B5B]">
+                        ৳{{ product.current_price }}
+                    </span>
+                    {% else %}
+                    <span class="text-base font-semibold text-[#933B5B]">
+                        ৳{{ product.selling_price }}
+                    </span>
+                    {% endif %}
+                </div>
+
+                <p class="text-[11px] mt-2 {% if product.is_in_stock %}text-[#66836D]{% else %}text-[#933B5B]{% endif %}">
+                    {% if product.is_in_stock %}
+                        Available · {{ product.stock_qty }} in stock
+                    {% else %}
+                        Currently unavailable
+                    {% endif %}
+                </p>
+
+                <div class="mt-auto pt-4 flex flex-col gap-2">
+                    {% if product.is_in_stock %}
+                    <button type="button"
+                            data-product-id="{{ product.id }}"
+                            class="add-to-cart-btn w-full px-5 py-2.5 rounded-full text-[11px] uppercase tracking-[0.15em] border border-[#933B5B] text-[#933B5B] hover:bg-[#933B5B] hover:text-white transition">
+                        Add to Bag
+                    </button>
+                    {% else %}
+                    <button type="button" disabled
+                            class="w-full px-5 py-2.5 rounded-full text-[11px] uppercase tracking-[0.15em] bg-[#E3D6BF]/50 text-[#2D2427]/40 cursor-not-allowed">
+                        Out of Stock
+                    </button>
+                    {% endif %}
+
+                    <a href="{% url 'product_detail' product.slug %}"
+                       class="text-center text-[10px] uppercase tracking-[0.15em] text-[#9F9679] hover:text-[#933B5B] transition">
+                        View Product Details →
+                    </a>
+                </div>
+
+            </div>
+        </article>
+
+        {% empty %}
+        <p class="col-span-full text-center text-sm text-[#2D2427]/60 py-10">
+            Our monthly bestsellers will appear here as orders come in.
+        </p>
+        {% endfor %}
+
+    </div>
+
+    <div class="text-center mt-12">
+        <a href="{% url 'shop' %}"
+           class="inline-block bg-[#933B5B] text-white text-xs uppercase tracking-[0.18em] px-9 py-3.5 rounded-full hover:bg-[#B5728A] transition shadow-sm">
+            View All Products
+        </a>
+    </div>
+
+</section>
+
+
+<!-- 5. FIND THEIR PERFECT BLOOM — COMPACT GIFT FINDER -->
+<section id="gift-finder" class="py-16 px-5 sm:px-8"
+         style="background:linear-gradient(135deg,#FAF7F2 0%,#E3D6BF 100%);">
+
+    <div class="max-w-4xl mx-auto bg-white/85 border rounded-2xl shadow-sm px-5 py-9 sm:px-10 sm:py-11"
+         style="border-color:#E3D6BF;">
+
+        <div class="text-center mb-8">
+
+            <p class="text-[10px] sm:text-xs uppercase tracking-[0.25em] mb-3"
+               style="color:#9F9679;">
+                A THOUGHTFUL GIFT STARTS HERE
+            </p>
+
+            <h2 class="font-serif-display text-3xl sm:text-5xl font-semibold"
+                style="color:#933B5B;">
+                Find their perfect bloom.
+            </h2>
+
+            <p class="text-xs sm:text-sm mt-3 max-w-lg mx-auto leading-relaxed"
+               style="color:#2D2427;">
+                Choose who you're gifting, the occasion and your budget.
+                We'll help you find a lovely match.
+            </p>
+
+        </div>
+
+        <form id="giftFinderForm" method="GET"
+              action="{% url 'gift_finder' %}">
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+                <!-- RECIPIENT -->
+                <div>
+                    <label for="gift-recipient"
+                           class="block text-[10px] uppercase tracking-[0.16em] mb-2 text-center"
+                           style="color:#9F9679;">
+                        WHO IS IT FOR?
+                    </label>
+
+                    <select id="gift-recipient" name="recipient" required
+                            class="gift-select w-full">
+                        <option value="" disabled selected>Choose recipient</option>
+                        <option value="mother">Mother</option>
+                        <option value="father">Father</option>
+                        <option value="sister">Sister</option>
+                        <option value="brother">Brother</option>
+                        <option value="friend">Friend</option>
+                        <option value="partner">Partner</option>
+                        <option value="colleague">Colleague</option>
+                    </select>
+                </div>
+
+                <!-- OCCASION -->
+                <div>
+                    <label for="gift-occasion"
+                           class="block text-[10px] uppercase tracking-[0.16em] mb-2 text-center"
+                           style="color:#9F9679;">
+                        THE OCCASION
+                    </label>
+
+                    <select id="gift-occasion" name="occasion" required
+                            class="gift-select w-full">
+                        <option value="" disabled selected>Choose occasion</option>
+                        <option value="birthday">Birthday</option>
+                        <option value="anniversary">Anniversary</option>
+                        <option value="valentines_day">Valentine's Day</option>
+                        <option value="congratulations">Congratulations</option>
+                        <option value="thank_you">Thank You</option>
+                        <option value="get_well_soon">Get Well Soon</option>
+                        <option value="just_because">Just Because</option>
+                    </select>
+                </div>
+
+                <!-- BUDGET -->
+                <div>
+                    <label for="gift-budget"
+                           class="block text-[10px] uppercase tracking-[0.16em] mb-2 text-center"
+                           style="color:#9F9679;">
+                        YOUR BUDGET
+                    </label>
+
+                    <select id="gift-budget" class="gift-select w-full" required>
+                        <option value="" disabled selected>Choose budget</option>
+                        <option value="0-500">Under ৳500</option>
+                        <option value="500-1000">৳500 – ৳1,000</option>
+                        <option value="1000-2000">৳1,000 – ৳2,000</option>
+                        <option value="2000-5000">৳2,000 – ৳5,000</option>
+                        <option value="5000-100000">৳5,000+</option>
+                    </select>
+
+                    <input type="hidden" id="gift-min-price" name="min_price">
+                    <input type="hidden" id="gift-max-price" name="max_price">
+                </div>
+
+            </div>
+
+            <p id="gift-budget-error"
+               class="hidden text-xs text-center mt-3"
+               style="color:#933B5B;">
+                Please choose a valid budget.
+            </p>
+
+            <div class="text-center mt-7">
+                <button type="submit"
+                        class="inline-flex items-center justify-center gap-2 px-9 py-3 rounded-full text-white text-[11px] uppercase tracking-[0.18em] hover:opacity-90 transition shadow-sm"
+                        style="background:#933B5B;">
+                    Find My Gift <span>✿</span>
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+
+<!-- 6. ROSE BANNER — ADMIN MANAGED FLOWER QUOTE -->
+<section id="reviews"
+         class="relative my-14 py-24 px-6 bg-cover bg-center text-[#FAF7F2]"
+         style="background-image: linear-gradient(rgba(45, 36, 39, 0.68), rgba(147, 59, 91, 0.58)), url('https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=1400');">
+
+    <div class="max-w-3xl mx-auto text-center">
+
+        {% if site_settings and site_settings.rose_quote %}
+            <p class="font-serif-display text-3xl sm:text-5xl italic leading-relaxed">
+                “{{ site_settings.rose_quote }}”
+            </p>
+
+            {% if site_settings.rose_quote_attribution %}
+            <p class="mt-6 text-xs uppercase tracking-[0.22em] text-[#E3D6BF] font-semibold">
+                — {{ site_settings.rose_quote_attribution }}
+            </p>
+            {% endif %}
+        {% endif %}
+
+    </div>
+</section>
+
+
+<!-- 7. ALEEN CONTACT & SOCIAL INFORMATION -->
+<!-- 7. ALEEN CONTACT INFORMATION -->
+<section id="contact-information" class="py-16 px-6 bg-[#FAF7F2]">
+
+    <div class="max-w-5xl mx-auto text-center">
+
+        <h2 class="font-serif-display text-3xl sm:text-4xl font-semibold text-[#2D2427]">
+            Stay Close to Aleen
+        </h2>
+
+        <h2 class="font-serif-display text-4xl sm:text-5xl font-bold text-[#2D2427] mt-4">
+            Ready to Bring Nature’s Elegance Home?
+        </h2>
+
+        <p class="text-xs sm:text-sm text-[#2D2427]/70 mt-4">
+            Enjoy handcrafted blooms delivered fresh across Dhaka, with complimentary delivery in Uttara.
+        </p>
+
+        <a href="{% url 'shop' %}"
+           class="inline-block mt-7 bg-[#933B5B] text-white text-xs uppercase tracking-[0.18em] px-8 py-3.5 rounded-full shadow-md hover:bg-[#B5728A] transition">
+            Shop Now
+        </a>
+
+    </div>
+</section>
+
+<!-- Admin Hero Slides JSON -->
+{{ hero_slides_data|json_script:"hero-slides-data" }}
+
+
+<!-- HERO + CART JAVASCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const slidesElement = document.getElementById('hero-slides-data');
+
+    const adminSlides = slidesElement
+        ? JSON.parse(slidesElement.textContent)
+        : [];
+
+    const fallbackSlides = [
+        {
+            name: "Blush Tulip Symphony",
+            image: "https://static.vecteezy.com/system/resources/previews/027/254/720/original/bouquet-of-pink-roses-isolated-on-transparent-background-free-png.png",
+            left_description: "Discover Aleen where handcrafted floral art meets heartfelt moments. Every bouquet is designed to bring elegance, warmth, and joy into your life.",
+            right_description: "Our exquisite bouquets transform ordinary days into moments filled with beauty, joy, and heartfelt emotion."
+        },
+        {
+            name: "Golden Hour Bloom",
+            image: "https://static.vecteezy.com/system/resources/previews/044/245/414/original/spring-flower-bouquet-isolated-on-transparent-background-png.png",
+            left_description: "Soft pastel blooms arranged with artisanal balance — a timeless gesture for birthdays, quiet apologies, and new beginnings.",
+            right_description: "Ideal for brightening a loved one’s space with sincere warmth and effortless natural charm."
+        }
+    ];
+
+    const heroData = adminSlides.length > 0 ? adminSlides : fallbackSlides;
+
+    const layers = [
+        document.getElementById('hero-img-a'),
+        document.getElementById('hero-img-b')
+    ];
+
+    const leftDescEl = document.getElementById('hero-left-desc');
+    const rightDescEl = document.getElementById('hero-right-desc');
+    const leftBox = document.getElementById('hero-left-box');
+    const rightBox = document.getElementById('hero-right-box');
+
+    if (
+        layers[0] &&
+        layers[1] &&
+        leftDescEl &&
+        rightDescEl &&
+        leftBox &&
+        rightBox &&
+        typeof gsap !== 'undefined' &&
+        heroData.length > 0
+    ) {
+
+        let currentIndex = 0;
+        let activeLayer = 0;
+        let isAnimating = false;
+
+        layers[0].src = heroData[0].image;
+        layers[0].alt = heroData[0].name;
+
+        leftDescEl.textContent = heroData[0].left_description;
+        rightDescEl.textContent = heroData[0].right_description;
+
+        gsap.set(layers[0], {
+            opacity: 1,
+            rotation: 0,
+            scale: 1
+        });
+
+        gsap.set(layers[1], {
+            opacity: 0,
+            rotation: -180,
+            scale: 0.78
+        });
+
+        function spinToSlide(nextIndex, direction = 1) {
+
+            if (isAnimating || heroData.length <= 1) return;
+
+            isAnimating = true;
+
+            const outgoing = layers[activeLayer];
+            const incoming = layers[1 - activeLayer];
+            const nextItem = heroData[nextIndex];
+
+            incoming.src = nextItem.image;
+            incoming.alt = nextItem.name;
+
+            gsap.set(incoming, {
+                rotation: direction * -160,
+                scale: 0.78,
+                opacity: 0
+            });
+
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    activeLayer = 1 - activeLayer;
+                    currentIndex = nextIndex;
+                    isAnimating = false;
+                }
+            });
+
+            tl.to(outgoing, {
+                duration: 0.95,
+                rotation: direction * 160,
+                scale: 0.78,
+                opacity: 0,
+                ease: "power2.inOut"
+            }, 0)
+
+            .to(incoming, {
+                duration: 0.95,
+                rotation: 0,
+                scale: 1,
+                opacity: 1,
+                ease: "power2.inOut"
+            }, 0.1)
+
+            .to([leftBox, rightBox], {
+                duration: 0.35,
+                opacity: 0,
+                y: 8,
+                ease: "power1.in"
+            }, 0)
+
+            .add(() => {
+                leftDescEl.textContent = nextItem.left_description;
+                rightDescEl.textContent = nextItem.right_description;
+            }, 0.4)
+
+            .to([leftBox, rightBox], {
+                duration: 0.5,
+                opacity: 1,
+                y: 0,
+                ease: "power2.out"
+            }, 0.45);
+        }
+
+        let autoSlide = setInterval(() => {
+            spinToSlide((currentIndex + 1) % heroData.length, 1);
+        }, 10000);
+
+        function resetTimer() {
+            clearInterval(autoSlide);
+
+            autoSlide = setInterval(() => {
+                spinToSlide((currentIndex + 1) % heroData.length, 1);
+            }, 10000);
+        }
+
+        const nextButton = document.getElementById('hero-next');
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                resetTimer();
+                spinToSlide((currentIndex + 1) % heroData.length, 1);
+            });
+        }
+
+        const prevButton = document.getElementById('hero-prev');
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                resetTimer();
+                spinToSlide((currentIndex - 1 + heroData.length) % heroData.length, -1);
+            });
+        }
+    }
+
+
+    // MOST LOVED: ADD TO CART BUTTONS
+    document.querySelectorAll('.add-to-cart-btn').forEach(function (button) {
+
+        button.addEventListener('click', function () {
+
+            const productId = Number(this.dataset.productId);
+
+            if (Number.isInteger(productId) && productId > 0) {
+
+                if (typeof addToCart === 'function') {
+                    addToCart(productId, 1);
+                } else {
+                    console.error('addToCart function is not available.');
+                }
+
+            }
+
+        });
+
+    });
+
+});
+</script>
+
+
+<!-- BANNER SLIDESHOW JAVASCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const bannerSlides = document.querySelectorAll('.banner-slide');
+    const indicators = document.querySelectorAll('.banner-indicator');
+
+    if (bannerSlides.length <= 1) return;
+
+    let currentBanner = 0;
+    let bannerTimer;
+
+    function showBanner(index) {
+        bannerSlides.forEach(function (slide, i) {
+            const isActive = i === index;
+
+            slide.classList.toggle('opacity-100', isActive);
+            slide.classList.toggle('opacity-0', !isActive);
+            slide.classList.toggle('z-10', isActive);
+            slide.classList.toggle('z-0', !isActive);
+            slide.classList.toggle('pointer-events-none', !isActive);
+
+            slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        });
+
+        indicators.forEach(function (indicator, i) {
+            const isActive = i === index;
+
+            indicator.classList.toggle('bg-white', isActive);
+            indicator.classList.toggle('bg-white/50', !isActive);
+            indicator.classList.toggle('scale-125', isActive);
+        });
+
+        currentBanner = index;
+    }
+
+    function nextBanner() {
+        showBanner((currentBanner + 1) % bannerSlides.length);
+    }
+
+    function startBannerTimer() {
+        clearInterval(bannerTimer);
+        bannerTimer = setInterval(nextBanner, 5000);
+    }
+
+    indicators.forEach(function (indicator) {
+        indicator.addEventListener('click', function () {
+            const index = Number(this.dataset.bannerIndex);
+
+            if (Number.isInteger(index) && index >= 0 && index < bannerSlides.length) {
+                showBanner(index);
+                startBannerTimer();
+            }
+        });
+    });
+
+    startBannerTimer();
+});
+</script>
+
+
+<!-- COMPACT GIFT FINDER JAVASCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const form = document.getElementById('giftFinderForm');
+
+    if (!form) return;
+
+    const budget = document.getElementById('gift-budget');
+    const minPrice = document.getElementById('gift-min-price');
+    const maxPrice = document.getElementById('gift-max-price');
+    const error = document.getElementById('gift-budget-error');
+
+    form.addEventListener('submit', function (event) {
+
+        const selectedBudget = budget.value;
+
+        if (!selectedBudget) {
+            event.preventDefault();
+            error.classList.remove('hidden');
+            return;
+        }
+
+        const range = selectedBudget.split('-');
+
+        minPrice.value = range[0];
+        maxPrice.value = range[1];
+
+        error.classList.add('hidden');
+    });
+
+});
+</script>
+
+
+<!-- GIFT FINDER + CONTACT STYLING -->
+<style>
+
+    .gift-select {
+        appearance: none;
+        -webkit-appearance: none;
+        background-color: #FAF7F2;
+
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23933B5B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+
+        padding: 13px 38px 13px 13px;
+        border: 1px solid #E3D6BF;
+        border-radius: 9px;
+
+        color: #2D2427;
+        font-size: 12px;
+
+        outline: none;
+        cursor: pointer;
+
+        transition: border-color 0.2s ease;
+    }
+
+    .gift-select:focus {
+        border-color: #933B5B;
+    }
+
+    .contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: #2D2427;
+        font-size: 13px;
+        transition: color 0.25s ease;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .contact-link:hover {
+        color: #933B5B;
+    }
+
+    .contact-link svg {
+        flex-shrink: 0;
+        color: #933B5B;
+    }
+
+/* Soft Blush Feature Boxes */
+
+/* Soft Blush Feature Boxes */
+/* Soft Blush Feature Boxes */
+.hero-glass {
+    background: rgba(255, 232, 237, 0.72) !important;
+    border: 1px solid rgba(147, 59, 91, 0.13);
+    border-radius: 16px;
+    padding: 16px !important;
+    box-shadow: 0 5px 18px rgba(73, 38, 51, 0.06);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
+.hero-glass h3 {
+    color: #492633 !important;
+    font-family: inherit !important;
+    font-size: 15px !important;
+    font-weight: inherit !important;
+    margin-bottom: 6px;
+}
+
+.hero-glass p {
+    color: #65404D !important;
+    font-family: inherit !important;
+    font-size: 11px !important;
+    line-height: 1.6;
+}
+
+.hero-glass .ico {
+    color: #A34F70 !important;
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.hero-glass:hover {
+    background: rgba(255, 232, 237, 0.85) !important;
+    transform: translateY(-3px);
+}
+/* Hero Text Font & Dark Color */
+.hero-glass,
+.hero-glass h3,
+.hero-glass p {
+    font-family: "Times New Roman", Times, serif !important;
+    color: #492633 !important;
+}
+
+.hero-home-section {
+    font-family: "Times New Roman", Times, serif !important;
+    color: #492633;
+}
+
+.hero-home-section h1,
+.hero-home-section h2,
+.hero-home-section p,
+.hero-home-section a {
+    font-family: "Times New Roman", Times, serif !important;
+    color: #492633;
+}
+.hero-home-section .font-serif-display {
+    font-family: 'Playfair Display', serif !important;
+}
+.hero-home-section .font-serif-display {
+    font-family: 'Playfair Display', serif !important;
+    font-style: italic !important;
+}
+.hero-home-section .text-center.relative.z-10 {
+    transform: translateY(-8px);
+}
+
+
+
+
+
+/* Elegant Floral Description Font */
+.hero-home-section .hero-glass p,
+.hero-home-section .hero-glass h3,
+.hero-home-section .hero-glass .ico,
+.hero-home-section .text-center.relative.z-10 + div p {
+    font-family: 'Lora', serif !important;
+}
+
+.hero-home-section .hero-glass h3 {
+    font-family: 'Lora', serif !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
+
+.hero-home-section .hero-glass p {
+    font-family: 'Lora', serif !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.6;
+}
+/* Rotating Flower Side Descriptions */
+.hero-home-section .hero-bouquet-stage p {
+    font-family: 'Lora', serif !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.7;
+    color: #492633 !important;
+}
+/* Left & Right Rotating Flower Descriptions */
+#hero-left-desc,
+#hero-right-desc {
+    font-family: 'Lora', serif !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.7 !important;
+    color: #492633 !important;
+}
+</style>
+
+{% endblock %}
